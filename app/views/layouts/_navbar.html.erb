@@ -1,8 +1,10 @@
 <header>
-    <a href="/">タスク管理</a>
-
-      <ul>
-        <li><%= link_to 'ユーザ登録', signup_path %></li>
-        <li><a href="#">ログイン</a></li>
-      </ul>
+  <% if logged_in? %>
+    <li><%= link_to 'ユーザ一覧', users_path %></li>
+    <li><%= link_to 'マイページ', user_path(current_user) %></li>
+    <li><%= link_to 'ログアウト', logout_path, method: :delete %></l1>
+  <% else %>
+    <li><%= link_to 'タスク管理アプリトップ', root_path %></li>
+    <li><%= link_to '新規登録', signup_path %></li>
+  <% end %>
 </header>
