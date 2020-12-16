@@ -1,5 +1,25 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <div class="row">
+    <aside class="col-sm-4">
+      <%= form_with(model: @task, local: true) do |f| %>
+        <div class="form-group">
+          <%= f.label :content, 'タイトル' %>
+          <%= f.text_area :content, class: 'form-control', rows: 5 %>
+          <%= f.label :status, '内容' %>
+          <%= f.text_area :status, class: 'form-control', rows: 5 %>
+        </div>
+        <%= f.submit '追加', class: 'btn btn-primary btn-block' %>
+      <% end %>
+    </aside>
+    <div class="col-sm-8">
+      <%= render 'tasks/tasks', tasks: @tasks %>
+    </div>
+  </div>
 <% else %>
-      <h1>タスク管理アプリ</h1>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>タスク管理トップページ</h1>
+      <%= link_to '新規登録', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+  </div>
 <% end %>
